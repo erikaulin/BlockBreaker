@@ -4,20 +4,27 @@ using System.Collections;
 public class Brick : MonoBehaviour {
 
 	public int maxHits;
+	
 	private int timesHit;
+	private LevelManager levelManager;
 
 	// Use this for initialization
 	void Start () {
 		timesHit = 0;
-	}
-	
-	void OnCollisionEnter2D (Collision2D col) {
-		timesHit++;
-		
+		levelManager = GameObject.FindObjectOfType<LevelManager>();
 	}
 	
 	// Update is called once per frame
 	void Update () {
 		
+	}
+	
+	void OnCollisionEnter2D (Collision2D col) {
+		timesHit++;
+		SimulateWin();
+	}
+	// TODO Remove this methos once we can actually win!
+	void SimulateWin () {
+		levelManager.LoadNextLevel();
 	}
 }
