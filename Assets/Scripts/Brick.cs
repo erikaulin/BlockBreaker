@@ -42,12 +42,16 @@ public class Brick : MonoBehaviour {
 		if (timesHit >= maxHits) {
 			breakableCount--;
 			levelManager.BrickDestoyed();
-			GameObject smokePuff = Instantiate (smoke, transform.position, Quaternion.identity) as GameObject;
-			smokePuff.particleSystem.startColor = this.GetComponent<SpriteRenderer>().color;
+			PuffSmoke();
 			Destroy(gameObject);
 		} else {
 			LoadSprites();
 		}
+	}
+
+	void PuffSmoke () {
+		GameObject smokePuff = Instantiate (smoke, transform.position, Quaternion.identity) as GameObject;
+		smokePuff.particleSystem.startColor = this.GetComponent<SpriteRenderer>().color;
 	}
 	
 	void LoadSprites () {
